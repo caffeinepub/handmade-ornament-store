@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Dancing+Script:wght@700&family=Nunito:wght@300;400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "PlayfairDisplay";
+  src: url("/assets/fonts/PlayfairDisplay.woff2") format("woff2");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Light craft palette */
+    --background: 0.98 0.005 60;
+    --foreground: 0.22 0.04 30;
+    --card: 0.99 0.003 60;
+    --card-foreground: 0.22 0.04 30;
+    --popover: 0.99 0.003 60;
+    --popover-foreground: 0.22 0.04 30;
+
+    /* Primary = coral-pink */
+    --primary: 0.62 0.18 15;
+    --primary-foreground: 0.99 0 0;
+
+    --secondary: 0.93 0.02 60;
+    --secondary-foreground: 0.35 0.05 30;
+
+    --muted: 0.95 0.01 60;
+    --muted-foreground: 0.55 0.04 30;
+
+    /* Accent = teal */
+    --accent: 0.7 0.12 195;
+    --accent-foreground: 0.99 0 0;
+
+    --destructive: 0.577 0.245 27;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.02 60;
+    --input: 0.95 0.01 60;
+    --ring: 0.62 0.18 15;
+
+    /* Craft brand tokens */
+    --coral-bright: 0.68 0.2 18;
+    --coral-main: 0.62 0.18 15;
+    --coral-mid: 0.55 0.15 12;
+    --teal-main: 0.7 0.12 195;
+    --teal-mid: 0.62 0.1 195;
+    --amber-main: 0.73 0.13 75;
+
+    --chart-1: 0.62 0.18 15;
+    --chart-2: 0.7 0.12 195;
+    --chart-3: 0.73 0.13 75;
+    --chart-4: 0.55 0.15 12;
+    --chart-5: 0.62 0.1 195;
+
+    --sidebar: 0.97 0.005 60;
+    --sidebar-foreground: 0.22 0.04 30;
+    --sidebar-primary: 0.62 0.18 15;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.93 0.02 60;
+    --sidebar-accent-foreground: 0.35 0.05 30;
+    --sidebar-border: 0.88 0.02 60;
+    --sidebar-ring: 0.62 0.18 15;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Nunito", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+@layer utilities {
+  .font-playfair {
+    font-family: "Playfair Display", serif;
+  }
+
+  .font-nunito {
+    font-family: "Nunito", sans-serif;
+  }
+
+  .font-dancing {
+    font-family: "Dancing Script", cursive;
+  }
+
+  /* Coral shimmer animation */
+  .shimmer-coral {
+    background: linear-gradient(
+      90deg,
+      #e8547a 0%,
+      #f0905a 40%,
+      #e8af3a 60%,
+      #e8547a 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .shimmer-coral-hover {
+    background: linear-gradient(
+      90deg,
+      #e8547a 0%,
+      #f0905a 40%,
+      #d4821a 60%,
+      #e8547a 100%
+    );
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    transition: background-position 0.6s ease, transform 0.3s ease;
+  }
+
+  .shimmer-coral-hover:hover {
+    background-position: 0% 0;
+    transform: translateY(-1px);
+  }
+
+  /* Product card hover */
+  .product-card-hover {
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s
+      ease;
+  }
+
+  .product-card-hover:hover {
+    border-color: oklch(var(--coral-main)) !important;
+    transform: scale(1.02);
+    box-shadow: 0 4px 24px oklch(var(--coral-main) / 0.15);
+  }
+
+  /* Coral glow */
+  .coral-glow {
+    box-shadow: 0 0 16px oklch(var(--coral-mid) / 0.25);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up,
+  .animate-fade-in {
+    animation: none;
+    opacity: 1;
+  }
+  .shimmer-coral {
+    animation: none;
+  }
+}
